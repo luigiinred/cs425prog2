@@ -5,5 +5,18 @@
 			"follow_symlinks": true,
 			"path": "."
 		}
-	]
+	],
+	"settings":
+	{
+		"rulers":
+		[
+			120,80
+		],
+		"tab_size": 4,
+		"template_settings":
+		{
+		},
+		"translate_tabs_to_spaces": false,
+		"trim_trailing_white_space_on_save": true
+	}
 }
