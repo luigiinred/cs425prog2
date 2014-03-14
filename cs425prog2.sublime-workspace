@@ -1,12 +1,1435 @@
 {
-	"rulers":
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ass",
+				"assignments"
+			],
+			[
+				"Que",
+				"Questionarium"
+			],
+			[
+				"inc",
+				"increment"
+			],
+			[
+				"ng",
+				"ng-click	AngularJS"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"a",
+				"a	<a href=\"mailto:\"> "
+			],
+			[
+				"ng-sw",
+				"ng-swipe-right	AngularJS"
+			],
+			[
+				"main",
+				"mainController"
+			],
+			[
+				"$sta",
+				"$state"
+			],
+			[
+				"tem",
+				"templateUrl"
+			],
+			[
+				"$state",
+				"$stateProvider"
+			],
+			[
+				"video",
+				"videoId"
+			],
+			[
+				"L",
+				"FLAG_END  (variable)"
+			],
+			[
+				"flas",
+				"flags"
+			],
+			[
+				"remov",
+				"remove"
+			],
+			[
+				"uac",
+				"uacc_id"
+			],
+			[
+				"ua",
+				"uacc_active"
+			],
+			[
+				"uacc",
+				"uacc_email"
+			],
+			[
+				"update",
+				"update_user"
+			],
+			[
+				"users",
+				"users_model"
+			],
+			[
+				"user",
+				"user_id"
+			],
+			[
+				"get",
+				"get_by_id"
+			],
+			[
+				"las",
+				"last_req_date"
+			],
+			[
+				"max",
+				"max-height"
+			],
+			[
+				"Questionaru",
+				"QuestionariumController"
+			],
+			[
+				"border",
+				"border-bottom"
+			],
+			[
+				"padd",
+				"padding-left"
+			],
+			[
+				"add",
+				"addClass	addClass"
+			],
+			[
+				"nav",
+				"navDrawer"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"sty",
+				"style	Attr"
+			],
+			[
+				"navigation",
+				"navigationDrawer"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"is",
+				"isset"
+			],
+			[
+				"pro",
+				"proc_close"
+			],
+			[
+				"Res",
+				"result"
+			],
+			[
+				"JSON",
+				"json_encode"
+			],
+			[
+				"lis",
+				"list-style"
+			],
+			[
+				"text",
+				"text_fr"
+			],
+			[
+				"ans",
+				"answer_id"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"In",
+				"INSERT"
+			],
+			[
+				"question",
+				"question_id"
+			],
+			[
+				"print",
+				"print_r"
+			]
+		]
+	},
+	"buffers":
 	[
-		120,80
+		{
+			"file": "cs425prog2.sublime-project",
+			"settings":
+			{
+				"buffer_size": 352,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": ".sha1.d",
+			"settings":
+			{
+				"buffer_size": 22,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "stub_sr/sr_rt.c",
+			"settings":
+			{
+				"buffer_size": 4513,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "cs425prog2.sublime-workspace",
+			"settings":
+			{
+				"buffer_size": 155,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/timmygarrabrant/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 744,
+				"line_ending": "Unix"
+			}
+		}
 	],
-	"tab_size": 4,
-	"template_settings":
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 341.0,
+		"selected_items":
+		[
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"save",
+				"Project: Save As"
+			],
+			[
+				"ind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"idn",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"indent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"in",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"i",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"inde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"tabs",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"indne",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"inden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"tab",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"pro",
+				"Project: Save As"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"projec",
+				"Project: Refresh Folders"
+			],
+			[
+				"htlm",
+				"Set Syntax: HTML"
+			]
+		],
+		"width": 601.0
+	},
+	"console":
+	{
+		"height": 153.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/timmygarrabrant/Google Drive/Documents/Class/spring14/csc425/cs425prog2/text.c",
+		"/Users/timmygarrabrant/Google Drive/Dev/BioCom/Questionarium/www/assets/views/assignments/read.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/BioCom/Questionarium/www/assets/views/assignments/question.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/BioCom/Questionarium/www/assets/views/settings/about.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/BioCom/Questionarium/config.xml",
+		"/Users/timmygarrabrant/Google Drive/Dev/BioCom/Questionarium/www/assets/js/angular-ui-router.js",
+		"/Users/timmygarrabrant/Google Drive/Dev/BioCom/Questionarium/www/assets/js/angular-animate.js",
+		"/Users/timmygarrabrant/Google Drive/Dev/BioCom/mrat/mrat.sublime-project",
+		"/Users/timmygarrabrant/Google Drive/Dev/BioCom/mrat/application/config/mimes.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/BioCom/mrat/system/language/english/migration_lang.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/BioCom/mrat/application/controllers/api/milestone.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/BioCom/HeartDefect (fixed)/Chrome/assets/css/style.css",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/special_questions/color.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/templates/multiple-choice.tpl",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/health.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/sante.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/posture.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/stress-mind.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/stress-company.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/sleep.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/fitness.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/image.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/preformance.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/sftp-config.json",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/login/register.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/login/registration.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/php_includes/save_registration.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/index.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/special_questions/body1.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/special_questions/body2.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/balance.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/splash260fr.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/splash628fr.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/templates/questionnaire.tpl",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/php_includes/question-functions.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/special_questions/question77fr.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/special_questions/social.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/questionnaire.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/stress.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/communication.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/leadership.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/motivation.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/personality.html",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/php_includes/global.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/login/adduser.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/login/newuser.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/youscan/css/style.css",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/login/registrationlogin.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/special_questions/posture.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/special_questions/numberMatching.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/splash93fr.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/youscan/Commuications.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/youscan/style.css",
+		"/Users/timmygarrabrant/Documents/anatomy-ibooks-widget/Anatomy /PerineumPlates/Plate 361.wdgt/css/boxPosition.css",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/save_answers.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/templates/multiple-choice-free-response.tpl",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/php_includes/question-object.php",
+		"/Users/timmygarrabrant/Google Drive/Dev/Youkali/splash_pages/body.html",
+		"/Users/timmygarrabrant/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 31.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"templateUrl: 'assets/views/index.html',\n				controller: 'VideoController'",
+			"templateUrl: 'assets/views/index.html',",
+			"assignments",
+			"explore",
+			"topics",
+			"explore",
+			"background-color",
+			"nav",
+			"sidebar",
+			"a{",
+			"a",
+			"active",
+			"Science",
+			"P",
+			"Science",
+			"local",
+			"StorageArea",
+			"Science",
+			"d0",
+			"state",
+			"$stateParams",
+			"$routeParams",
+			"ng-",
+			"Provider",
+			"$stateParams",
+			"route",
+			"video",
+			"index",
+			",",
+			"$",
+			"$stateParams",
+			"$state",
+			"upro_first_name",
+			"uacc_suspend",
+			"uacc_email",
+			"milestone",
+			"mil_id",
+			"get_list",
+			"phones",
+			"<a",
+			"CHDApp",
+			"320px",
+			"300px",
+			"320",
+			"340px",
+			"320px",
+			"Research Topics</li>\n					<li>Basic Sciecne Lab</li>\n					<li>Resource Library</li>\n					<li>Clinical</li>\n					<li>Social Lab</li>",
+			"300px",
+			"260",
+			"240",
+			"sidenavigationDrawer",
+			"Menu",
+			"menu",
+			"Menu",
+			"menu",
+			"Menu",
+			"menu",
+			"Menu",
+			"menu",
+			"#navigation",
+			"visible",
+			"class",
+			"329",
+			"410px;",
+			"100px",
+			"Back",
+			"lowBack",
+			"Arm",
+			"lShoulder",
+			"é",
+			"’",
+			"à",
+			"é",
+			"Arm",
+			"Shoulder",
+			"lElbow",
+			"lShoulder",
+			"Shoulder",
+			"rBack",
+			"r",
+			":",
+			"`",
+			"=",
+			"email\ndate_of_birth\nphone_mobile\nphone_landline\naddress\npostal_code\ncity\ncountry\nemployer\nfunctions\nseniority\nwork_address\nwork_postal_code\nwork_city\nwork_country\nwork_phone",
+			"\n\n",
+			"]",
+			"[",
+			"// ",
+			"(0)",
+			"get_questions_query",
+			"body",
+			"Bike",
+			"vehicle",
+			"<input type=\"checkbox\"",
+			"img",
+			"id",
+			"ef=\"",
+			"h1",
+			"ê",
+			"é",
+			"à",
+			"sthandler",
+			"username",
+			"ser_answers",
+			"answers"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "cs425prog2.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 352,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								155,
+								155
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close"
+							],
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"sublime_auto_complete": true,
+							"synced": false,
+							"syntax": "Packages/Better JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": ".sha1.d",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 22,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close"
+							],
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/D/D.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "stub_sr/sr_rt.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4513,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								462,
+								462
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close"
+							],
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"sublime_auto_complete": true,
+							"synced": false,
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "cs425prog2.sublime-workspace",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 155,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								28,
+								28
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close"
+							],
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"sublime_auto_complete": true,
+							"synced": false,
+							"syntax": "Packages/Better JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/Users/timmygarrabrant/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 744,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								599,
+								576
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close"
+							],
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"sublime_auto_complete": true,
+							"synced": false,
+							"syntax": "Packages/Better JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 162.0
+	},
+	"project": "cs425prog2.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"admin",
+				"mrat/application/controllers/admin.php"
+			],
+			[
+				"admin.php",
+				"mrat/application/controllers/admin.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
 	{
 	},
-	"translate_tabs_to_spaces": false,
-	"trim_trailing_white_space_on_save": true
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 292.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
 }
