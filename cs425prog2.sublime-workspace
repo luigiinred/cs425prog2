@@ -1,0 +1,17 @@
+{
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 292.0,
+	"status_bar_visible": true,
+	"tab_size": 4,
+	"template_settings":
+	{
+	},
+	"translate_tabs_to_spaces": false,
+	"trim_trailing_white_space_on_save": true
+}
