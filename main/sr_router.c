@@ -66,7 +66,7 @@ void sr_handlepacket(struct sr_instance* sr,
     assert(interface);
 
     printf("*** -> Received packet of length %d \n",len);
-    printf("%s\n", interface);
+    printf("%" SCNd8 "\n" ,packet);
 
 }/* end sr_ForwardPacket */
 
