@@ -13,6 +13,7 @@
 
 #include <stdio.h>
 #include <assert.h>
+#include <inttypes.h>
 
 
 #include "sr_if.h"
