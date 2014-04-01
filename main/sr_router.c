@@ -10,11 +10,10 @@
  * for routing. 11
  *
  **********************************************************************/
-
+ #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
-#include <inttypes.h>
-
+#include <inttypes.h> // Needed to print uint8_t
 
 #include "sr_if.h"
 #include "sr_rt.h"
@@ -65,9 +64,18 @@ void sr_handlepacket(struct sr_instance* sr,
     assert(sr);
     assert(packet);
     assert(interface);
+    struct ip *new_packet = calloc(1, sizeof(struct ip));
+     new_packet = (struct ip*) packet;
 
     printf("*** -> Received packet of length %d \n",len);
-    printf("%" SCNd8 "\n" ,packet);
+    printf("ip_tos: %" PRIu8 "\n", new_packet->ip_tos);
+
+    printf("ip_src: %" PRIu8 "\n", new_packet->ip_src.s_addr);
+    printf("ip_dst: %" PRIu8 "\n", new_packet->ip_dst.s_addr);
+
+    printf("%s\n", interface);
+    printf("%" PRIu8 "\n", sr->sr_addr.sin_addr.s_addr);
+
 
 }/* end sr_ForwardPacket */
 
