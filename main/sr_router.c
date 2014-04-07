@@ -10,6 +10,7 @@
  * for routing. 11
  *
  **********************************************************************/
+#include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
 #include <string.h> /* memset */
@@ -32,7 +33,6 @@ void sr_init(struct sr_instance* sr)
 {
     /* REQUIRES */
     assert(sr);
-
     /* Add initialization code here! */
 
 } /* -- sr_init -- */
@@ -54,7 +54,6 @@ void sr_init(struct sr_instance* sr)
  * the method call.
  *
  *---------------------------------------------------------------------*/
-
 void sr_handlepacket(struct sr_instance* sr,
         uint8_t * packet/* lent */,
         unsigned int len,
@@ -65,7 +64,6 @@ void sr_handlepacket(struct sr_instance* sr,
     assert(packet);
     assert(interface);
 
-    printf("*** -> Received packet of length %d \n",len);
     uint32_t thisIP = 0xAC1D0C08;
 
     printf("*** -> Received packet of length %d \n",len);  //print everything out
@@ -134,13 +132,41 @@ void sr_handlepacket(struct sr_instance* sr,
 
 
 
+    // unsigned int srcInt = ip_packet->ip_src.s_addr;
+    // unsigned int dstInt = ip_packet->ip_dst.s_addr;   // use network to host long to interpret the destination IP
+
+    struct readableIP{                       //this struct will parse an IP address
+        unsigned int byte1: 8;
+        unsigned int byte2: 8;
+        unsigned int byte3: 8;
+        unsigned int byte4: 8;
+     };
+    union readTheIP{                        //this union will combine the IP address integer and the struct
+        unsigned int joinHere;
+        struct readableIP legibleRepresentation;
+    };
+
+    // union readTheIP makeIpReadable1;        //create an instance of each union
+    // makeIpReadable1.joinHere = dstInt;      // and join it with the appropriate integer or pointer
+    // union readTheIP makeIpReadable2;
+    // makeIpReadable2.joinHere = srcInt;
+    // union readTheIP makeIpReadable3;
+    // makeIpReadable3.joinHere = arphdr->ar_sip;
+    // union readTheIP makeIpReadable4;
+    // makeIpReadable4.joinHere = arphdr->ar_tip;
+
+
+    // printf("srcMAC: %X:%X:%X:%X:%X:%X\n", makeMACReadable2.legibleRepresentation.byte1, makeMACReadable2.legibleRepresentation.byte2, makeMACReadable2.legibleRepresentation.byte3, makeMACReadable2.legibleRepresentation.byte4, makeMACReadable2.legibleRepresentation.byte5, makeMACReadable2.legibleRepresentation.byte6);
+    // printf("dstMAC: %X:%X:%X:%X:%X:%X\n", makeMACReadable1.legibleRepresentation.byte1, makeMACReadable1.legibleRepresentation.byte2, makeMACReadable1.legibleRepresentation.byte3, makeMACReadable1.legibleRepresentation.byte4, makeMACReadable1.legibleRepresentation.byte5, makeMACReadable1.legibleRepresentation.byte6);
+
+    // printf("ar_sip: %X\n", arphdr->ar_sip);
+    // printf("ar_tip: %X\n", arphdr->ar_tip);
+
+    // printf("ip_src: %d.%d.%d.%d\n", makeIpReadable2.legibleRepresentation.byte1, makeIpReadable2.legibleRepresentation.byte2, makeIpReadable2.legibleRepresentation.byte3, makeIpReadable2.legibleRepresentation.byte4);
+    // printf("ip_dst: %d.%d.%d.%d\n", makeIpReadable1.legibleRepresentation.byte1, makeIpReadable1.legibleRepresentation.byte2, makeIpReadable1.legibleRepresentation.byte3, makeIpReadable1.legibleRepresentation.byte4);
+    // printf("ar_sip: %d.%d.%d.%d\n", makeIpReadable3.legibleRepresentation.byte1, makeIpReadable3.legibleRepresentation.byte2, makeIpReadable3.legibleRepresentation.byte3, makeIpReadable3.legibleRepresentation.byte4);
+    // printf("ar_tip: %d.%d.%d.%d\n", makeIpReadable4.legibleRepresentation.byte1, makeIpReadable4.legibleRepresentation.byte2, makeIpReadable4.legibleRepresentation.byte3, makeIpReadable4.legibleRepresentation.byte4);
 
     printf("%s\n", interface);
 
-}/* end sr_ForwardPacket */
-
-
-/*---------------------------------------------------------------------
- * Method:
- *
- *---------------------------------------------------------------------*/
+}     /* end sr_ForwardPacket */
