@@ -28,6 +28,19 @@
  * Initialize the routing subsystem
  *
  *---------------------------------------------------------------------*/
+u_short cksum(u_short *buf, int count){
+    register u_long sum = 0;
+    while (count--){
+        sum += *buf++;
+        if (sum & 0xFFFF0000){
+            /* carry occurred,
+            so wrap around */
+            sum &= 0xFFFF;
+            sum++;
+        }
+    }
+    return ~(sum & 0xFFFF);
+}
 
 void sr_init(struct sr_instance* sr)
 {
@@ -128,6 +141,23 @@ void sr_handlepacket(struct sr_instance* sr,
     if (ether_type == 0x0800){
         printf("This is an IP packet\n");
         struct ip *ip_packet = ethernet_hdr + 1;
+
+        uint8_t *new_packet = calloc(1, sizeof(packet)*len);  //make a new packet so that I can set checksum to zero before calculating it
+        memcpy(new_packet, packet, sizeof(packet)*len);
+        struct sr_ethernet_hdr *new_ethernet_hdr = new_packet;
+        struct ip *new_ip_packet = new_ethernet_hdr + 1;
+        uint16_t givenChecksum = new_ip_packet->ip_sum;
+        new_ip_packet->ip_sum = 0x0000;                        //setting checksum to zero
+        uint16_t calculatedChecksum = cksum((uint16_t *) new_ip_packet, new_ip_packet->ip_hl);
+        printf("The ip_hl is: %d\n", new_ip_packet->ip_hl);
+        printf("The givenChecksum is: %X\n", givenChecksum);
+        printf("The givenChecksum is: %d\n", givenChecksum);
+        printf("The calculatedChecksum is: %d\n", calculatedChecksum);
+        printf("The calculatedChecksum is: %X\n", calculatedChecksum);
+        free(new_packet);
+
+
+
     }
 
 
