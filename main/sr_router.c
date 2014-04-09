@@ -28,7 +28,8 @@
  * Initialize the routing subsystem
  *
  *---------------------------------------------------------------------*/
-u_short cksum(u_short *buf, int count){
+
+u_short cksum(u_short *buf, int count){     //checksum algorithm
     register u_long sum = 0;
     while (count--){
         sum += *buf++;
@@ -41,6 +42,12 @@ u_short cksum(u_short *buf, int count){
     }
     return ~(sum & 0xFFFF);
 }
+
+    struct icmp_hdr{                //icmp headers not in the header files
+        uint8_t    icmp_type;
+        uint8_t    icmp_code;
+        uint16_t   icmp_cksum;
+    };
 
 void sr_init(struct sr_instance* sr)
 {
@@ -67,6 +74,7 @@ void sr_init(struct sr_instance* sr)
  * the method call.
  *
  *---------------------------------------------------------------------*/
+
 void sr_handlepacket(struct sr_instance* sr,
         uint8_t * packet/* lent */,
         unsigned int len,
@@ -76,105 +84,159 @@ void sr_handlepacket(struct sr_instance* sr,
     assert(sr);
     assert(packet);
     assert(interface);
+/************************THE LINE BELOW IS TOPOLOGY SPECIFIC*****************************/
+    uint32_t thisIP = 0xAC1D0C08;  //Chris's topo IP for eth0: 0xAC1D0C08; Timmy's:
+/****************************************************************************************/
 
-    uint32_t thisIP = 0xAC1D0C08;
+    printf("*** -> Received packet of length %d \n",len);                           //print everything out
 
-    printf("*** -> Received packet of length %d \n",len);  //print everything out
-
-    struct sr_ethernet_hdr *ethernet_hdr = packet;
+    struct sr_ethernet_hdr *ethernet_hdr = packet;                                  //interpret the packet as an ethernet header
     uint16_t ether_type = ntohs(ethernet_hdr->ether_type);
 
-    if (ether_type == 0x0806){
-        printf("This is an arp packet\n");
-        struct sr_arphdr *arphdr = ethernet_hdr + 1;
-        uint16_t ar_op = ntohs(arphdr->ar_op);
+    if (ether_type == 0x0806){                                                      //This is an ARP packet
+        printf("This is an arp packet\n");                                          //**************** For testing only
+        struct sr_arphdr *arphdr = ethernet_hdr + 1;                                //interpret the packet as an ethernet header plus arp packet
+        uint16_t ar_op = ntohs(arphdr->ar_op);                                      //change the op code from network to host byte order
 
-        if (ar_op == 0x0001){
-            uint32_t ar_tip = ntohl(arphdr->ar_tip);
+        if (ar_op == 0x0001){                                                       //if opcode is 1, it is an arp request
+            uint32_t ar_tip = ntohl(arphdr->ar_tip);                                //change the target ip address from network to host byte order
 
-            if(ar_tip == thisIP){
-                uint8_t *new_packet = calloc(1, sizeof(packet)*len);
+            if(ar_tip == thisIP){                                                   //if arp request is for me... build and send a response
+                uint8_t *new_packet = calloc(1, sizeof(packet)*len);                //create a copy of the packet
                 memcpy(new_packet, packet, sizeof(packet)*len);
-                struct sr_ethernet_hdr *new_ethernet_hdr = new_packet;
+
+                struct sr_ethernet_hdr *new_ethernet_hdr = new_packet;              //and interpret the copied packet as an ethernet and arp header
                 struct sr_arphdr *new_arphdr = new_ethernet_hdr + 1;
-                    //change the ethernet headers
+
+                //change the ethernet headers
                 new_ethernet_hdr->ether_dhost[0] = ethernet_hdr->ether_shost[0];     //make the new target address the old sender address
                 new_ethernet_hdr->ether_dhost[1] = ethernet_hdr->ether_shost[1];
                 new_ethernet_hdr->ether_dhost[2] = ethernet_hdr->ether_shost[2];
                 new_ethernet_hdr->ether_dhost[3] = ethernet_hdr->ether_shost[3];
                 new_ethernet_hdr->ether_dhost[4] = ethernet_hdr->ether_shost[4];
                 new_ethernet_hdr->ether_dhost[5] = ethernet_hdr->ether_shost[5];
-                new_ethernet_hdr->ether_shost[0] = 0x22;                //make the new sender address my MAC address
-                new_ethernet_hdr->ether_shost[1] = 0x10;
-                new_ethernet_hdr->ether_shost[2] = 0xd8;
-                new_ethernet_hdr->ether_shost[3] = 0x83;
-                new_ethernet_hdr->ether_shost[4] = 0x54;
-                new_ethernet_hdr->ether_shost[5] = 0x6c;
-                    //change the arp headers
-                new_arphdr->ar_tip = arphdr->ar_sip;
+/**************************************************THE FOLLOWING LINES ARE TOPOLOGY SPECIFIC**************************************************/
+/**/            new_ethernet_hdr->ether_shost[0] = 0x22;                            //make the new sender address my MAC address
+/**/            new_ethernet_hdr->ether_shost[1] = 0x10;                            //Chris's MAC address topology for eth0: 22.10.d8.83.54.6c
+/**/            new_ethernet_hdr->ether_shost[2] = 0xd8;                            //Timmy's:
+/**/            new_ethernet_hdr->ether_shost[3] = 0x83;
+/**/            new_ethernet_hdr->ether_shost[4] = 0x54;
+/**/            new_ethernet_hdr->ether_shost[5] = 0x6c;
+/**********************************************************************************************************************************************/
+                //change the arp headers
+                new_arphdr->ar_tip = arphdr->ar_sip;                                //flip flop the old IP addresses and assign them to the new
                 new_arphdr->ar_sip = arphdr->ar_tip;
-                new_arphdr->ar_op = htons(0x0002);
-                new_arphdr->ar_tha[0] = arphdr->ar_sha[0];     //make the new target address the old sender address
+                new_arphdr->ar_op = htons(0x0002);                                  //set the opcode to 2, for reply
+                new_arphdr->ar_tha[0] = arphdr->ar_sha[0];                          //make the new target address the old sender address
                 new_arphdr->ar_tha[1] = arphdr->ar_sha[1];
                 new_arphdr->ar_tha[2] = arphdr->ar_sha[2];
                 new_arphdr->ar_tha[3] = arphdr->ar_sha[3];
                 new_arphdr->ar_tha[4] = arphdr->ar_sha[4];
                 new_arphdr->ar_tha[5] = arphdr->ar_sha[5];
-                new_arphdr->ar_sha[0] = 0x22;                //make the new sender address my MAC address
-                new_arphdr->ar_sha[1] = 0x10;
-                new_arphdr->ar_sha[2] = 0xd8;
-                new_arphdr->ar_sha[3] = 0x83;
-                new_arphdr->ar_sha[4] = 0x54;
-                new_arphdr->ar_sha[5] = 0x6c;
-
-                sr_send_packet(sr,new_packet,len,"eth0");
-                free(new_packet);
+/**************************************************THE FOLLOWING LINES ARE TOPOLOGY SPECIFIC**************************************************/
+/**/            new_arphdr->ar_sha[0] = 0x22;                                       //make the new sender address my MAC address
+/**/            new_arphdr->ar_sha[1] = 0x10;                                       //Chris's MAC address topology for eth0: 22.10.d8.83.54.6c
+/**/            new_arphdr->ar_sha[2] = 0xd8;                                       //Timmy's:
+/**/            new_arphdr->ar_sha[3] = 0x83;
+/**/            new_arphdr->ar_sha[4] = 0x54;
+/**/            new_arphdr->ar_sha[5] = 0x6c;
+/**********************************************************************************************************************************************/
+                sr_send_packet(sr,new_packet,len,"eth0");                           //send the response
+                free(new_packet);                                                   //free the allocated memory
             }
 
-        } else if (ar_op == 0x0002){
+        } else if (ar_op == 0x0002){                                                //if the ARP op code is 2, a reply...
             printf("now you need to update the routing table\n");
 
         } else;
     }
 
+    if (ether_type == 0x0800){                                                      //This is an IP packet
+        printf("This is an IP packet\n");                                           //**************** For testing only
 
-    if (ether_type == 0x0800){
-        printf("This is an IP packet\n");
-        struct ip *ip_packet = ethernet_hdr + 1;
-
-        uint8_t *new_packet = calloc(1, sizeof(packet)*len);  //make a new packet so that I can set checksum to zero before calculating it
+        uint8_t *new_packet = calloc(1, sizeof(packet)*len);                        //have to make a new packet so that I can set checksum to zero before calculating it
         memcpy(new_packet, packet, sizeof(packet)*len);
-        struct sr_ethernet_hdr *new_ethernet_hdr = new_packet;
-        struct ip *new_ip_packet = new_ethernet_hdr + 1;
-        uint16_t givenChecksum = new_ip_packet->ip_sum;
-        new_ip_packet->ip_sum = 0x0000;                        //setting checksum to zero
-        uint16_t calculatedChecksum = cksum((uint16_t *) new_ip_packet, new_ip_packet->ip_hl);
-        printf("The ip_hl is: %d\n", new_ip_packet->ip_hl);
-        printf("The givenChecksum is: %X\n", givenChecksum);
-        printf("The givenChecksum is: %d\n", givenChecksum);
-        printf("The calculatedChecksum is: %d\n", calculatedChecksum);
-        printf("The calculatedChecksum is: %X\n", calculatedChecksum);
-        free(new_packet);
+        struct sr_ethernet_hdr *new_ethernet_hdr = new_packet;                      //interpret this copied packet as an ethernet header
+        struct ip *new_ip_packet = new_ethernet_hdr + 1;                            //and an IP packet
 
+        uint16_t givenChecksum = new_ip_packet->ip_sum;                             //store the provided checksum
+        new_ip_packet->ip_sum = 0x0000;                                             //set the checksum field to zero, then calculate the checksum for verification
+        uint16_t calculatedChecksum = cksum((uint16_t *) new_ip_packet, new_ip_packet->ip_hl*2);  //the count is header length * 2 because the header length is given in 32 bits, where the count is in 16 bits
 
+        if (givenChecksum != calculatedChecksum){                                   //if the checksum is invalid
+            printf("IP Checksum is invalid\n");                                     //**************** For testing only
+            return;                                                                 //drop the packet
 
+        }else if(new_ip_packet->ip_p == 1 && ntohl(new_ip_packet->ip_dst.s_addr) == thisIP){ //if the ip packet is an ICMP and it's meant for my IP address...
+                printf("This is an ICMP packet for me\n");                          //**************** For testing only
+                struct icmp_hdr *icmpHeader = new_ip_packet + 1;                    //interpret it as an ICMP header
+
+                if(icmpHeader->icmp_type == 8){                                     //This is an ICMP request
+                    printf("This is an icmp request\n");                            //**************** For testing only
+
+                    uint16_t gChecksum = icmpHeader->icmp_cksum;                    //store the given ICMP checksum
+                    icmpHeader->icmp_cksum = 0x0000;                                //set the ICMP checksum field to zero, then calculate the checksum for verification
+                    uint16_t cChecksum = cksum((uint16_t *) icmpHeader, 32);        //I determined the count is 32 by logging the wire traffic and counting the total number of bytes for an ICMP message, then dividing by 2
+
+                    if(gChecksum != cChecksum){                                     //if the checksum is invalid
+                        printf("The icmp checksum is invalid\n");                   //**************** For testing only
+                        return;                                                     //drop the packet
+
+                    }else{                                                          //otherwise, send a response
+                        //change ICMP headers
+                        icmpHeader->icmp_type = 0;                                  //set type to 0 for reply
+                        uint16_t newChecksum1 = cksum((uint16_t *) icmpHeader, 32); //calculate new checksum of ICMP packet
+                        icmpHeader->icmp_cksum = newChecksum1;                      //set new checksum
+                        //change the ip headers
+                        new_ip_packet->ip_dst.s_addr = new_ip_packet->ip_src.s_addr;//switch the sender/receiver IP address fields
+                        new_ip_packet->ip_src.s_addr = htonl(thisIP);
+                        new_ip_packet->ip_ttl = 0x04;                               //this is 64 in hex, but switched from host to network byte order. 64 was recommended by the FAQ
+                        uint16_t newChecksum2 = cksum((uint16_t *) new_ip_packet, new_ip_packet->ip_hl*2); //calculate new checksum of IP packet
+                        new_ip_packet->ip_sum = newChecksum2;                       //set the new checksum
+                        //change the ethernet headers
+                        new_ethernet_hdr->ether_dhost[0] = ethernet_hdr->ether_shost[0]; //make the new target address the old sender address
+                        new_ethernet_hdr->ether_dhost[1] = ethernet_hdr->ether_shost[1];
+                        new_ethernet_hdr->ether_dhost[2] = ethernet_hdr->ether_shost[2];
+                        new_ethernet_hdr->ether_dhost[3] = ethernet_hdr->ether_shost[3];
+                        new_ethernet_hdr->ether_dhost[4] = ethernet_hdr->ether_shost[4];
+                        new_ethernet_hdr->ether_dhost[5] = ethernet_hdr->ether_shost[5];
+/**************************************************THE FOLLOWING LINES ARE TOPOLOGY SPECIFIC**************************************************/
+/**/                    new_ethernet_hdr->ether_shost[0] = 0x22;                    //make the new sender address my MAC address
+/**/                    new_ethernet_hdr->ether_shost[1] = 0x10;                    //Chris's MAC address topology for eth0: 22.10.d8.83.54.6c
+/**/                    new_ethernet_hdr->ether_shost[2] = 0xd8;                    //Timmy's:
+/**/                    new_ethernet_hdr->ether_shost[3] = 0x83;
+/**/                    new_ethernet_hdr->ether_shost[4] = 0x54;
+/**/                    new_ethernet_hdr->ether_shost[5] = 0x6c;
+/**********************************************************************************************************************************************/
+                        sr_send_packet(sr,new_packet,len,"eth0");                   //send the ICMP echo reply
+                    }
+                }
+        }
+        free(new_packet);                                                           //free the allocated memory
     }
 
 
 
+
+
+
+
+
+/********I used the stuff below to make IP's readable. I'll leave them here until they're no longer needed*****************/
+
     // unsigned int srcInt = ip_packet->ip_src.s_addr;
     // unsigned int dstInt = ip_packet->ip_dst.s_addr;   // use network to host long to interpret the destination IP
 
-    struct readableIP{                       //this struct will parse an IP address
-        unsigned int byte1: 8;
-        unsigned int byte2: 8;
-        unsigned int byte3: 8;
-        unsigned int byte4: 8;
-     };
-    union readTheIP{                        //this union will combine the IP address integer and the struct
-        unsigned int joinHere;
-        struct readableIP legibleRepresentation;
-    };
+    // struct readableIP{                       //this struct will parse an IP address
+    //     unsigned int byte1: 8;
+    //     unsigned int byte2: 8;
+    //     unsigned int byte3: 8;
+    //     unsigned int byte4: 8;
+    //  };
+    // union readTheIP{                        //this union will combine the IP address integer and the struct
+    //     unsigned int joinHere;
+    //     struct readableIP legibleRepresentation;
+    // };
 
     // union readTheIP makeIpReadable1;        //create an instance of each union
     // makeIpReadable1.joinHere = dstInt;      // and join it with the appropriate integer or pointer
@@ -198,5 +260,4 @@ void sr_handlepacket(struct sr_instance* sr,
     // printf("ar_tip: %d.%d.%d.%d\n", makeIpReadable4.legibleRepresentation.byte1, makeIpReadable4.legibleRepresentation.byte2, makeIpReadable4.legibleRepresentation.byte3, makeIpReadable4.legibleRepresentation.byte4);
 
     printf("%s\n", interface);
-
 }     /* end sr_ForwardPacket */
