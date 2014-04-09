@@ -211,6 +211,14 @@ void sr_handlepacket(struct sr_instance* sr,
                         sr_send_packet(sr,new_packet,len,"eth0");                   //send the ICMP echo reply
                     }
                 }
+        }else{
+            uint8_t ttl = new_ip_packet->ip_ttl - 1;                                //decrement ttl by 1
+            uint16_t recalculatedChecksum = cksum((uint16_t *) new_ip_packet, new_ip_packet->ip_hl*2);  //recalculate checksum
+            new_ip_packet->ip_sum = recalculatedChecksum;                           //set the new checksum
+            printf("ip address: %X\n", new_ip_packet->ip_dst.s_addr);
+            //if the ip address is in our cache, then forward the packet to the appropriate router
+            //where in the world do we store a cache???
+            //if the ip address is not in our cache, send out an ARP request for this IP
         }
         free(new_packet);                                                           //free the allocated memory
     }
