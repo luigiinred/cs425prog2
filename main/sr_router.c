@@ -155,6 +155,7 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 					new_ethernet_hdr->ether_shost[5] = 0x79;
 
 
+
 				}else if(sr->topo_id == 0){  //Chris's MAC address topology for eth0: 22.10.d8.83.54.6c
 					new_ethernet_hdr->ether_shost[0] = 0x22;
 					new_ethernet_hdr->ether_shost[1] = 0x10;
@@ -187,21 +188,6 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 					new_arphdr->ar_sha[4] = 0xf1;
 					new_arphdr->ar_sha[5] = 0x0d;
 
-					to_interface = "eth1";
-					new_arphdr->ar_sha[0] = 0x22;
-					new_arphdr->ar_sha[1] = 0x10;
-					new_arphdr->ar_sha[2] = 0xd8;
-					new_arphdr->ar_sha[3] = 0x83;
-					new_arphdr->ar_sha[4] = 0x54;
-					new_arphdr->ar_sha[5] = 0x6c;
-
-					to_interface = "eth2";
-					new_arphdr->ar_sha[0] = 0x92;
-					new_arphdr->ar_sha[1] = 0xa3;
-					new_arphdr->ar_sha[2] = 0x5e;
-					new_arphdr->ar_sha[3] = 0xe7;
-					new_arphdr->ar_sha[4] = 0xd9;
-					new_arphdr->ar_sha[5] = 0x79;
 
 				}else if(sr->topo_id == 0){  //Chris's MAC address topology for eth0: 22.10.d8.83.54.6c
 					new_arphdr->ar_sha[0] = 0x22;
@@ -275,12 +261,31 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 						new_ethernet_hdr->ether_dhost[5] = ethernet_hdr->ether_shost[5];
 
 						if (sr->topo_id == 314){  // Timmy
+
+							to_interface = "eth0";
 							new_ethernet_hdr->ether_shost[0] = 0x32;
 							new_ethernet_hdr->ether_shost[1] = 0x4e;
 							new_ethernet_hdr->ether_shost[2] = 0xf1;
 							new_ethernet_hdr->ether_shost[3] = 0xe4;
 							new_ethernet_hdr->ether_shost[4] = 0xf1;
 							new_ethernet_hdr->ether_shost[5] = 0x0d;
+
+							to_interface = "eth1";
+							new_ethernet_hdr->ether_shost[0] = 0x22;
+							new_ethernet_hdr->ether_shost[1] = 0x10;
+							new_ethernet_hdr->ether_shost[2] = 0xd8;
+							new_ethernet_hdr->ether_shost[3] = 0x83;
+							new_ethernet_hdr->ether_shost[4] = 0x54;
+							new_ethernet_hdr->ether_shost[5] = 0x6c;
+
+							to_interface = "eth2";
+							new_ethernet_hdr->ether_shost[0] = 0x92;
+							new_ethernet_hdr->ether_shost[1] = 0xa3;
+							new_ethernet_hdr->ether_shost[2] = 0x5e;
+							new_ethernet_hdr->ether_shost[3] = 0xe7;
+							new_ethernet_hdr->ether_shost[4] = 0xd9;
+							new_ethernet_hdr->ether_shost[5] = 0x79;
+
 						}else if(sr->topo_id == 0){  //Chris's MAC address topology for eth0: 22.10.d8.83.54.6c
 							new_ethernet_hdr->ether_shost[0] = 0x22;
 							new_ethernet_hdr->ether_shost[1] = 0x10;
@@ -290,7 +295,7 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 							new_ethernet_hdr->ether_shost[5] = 0x6c;
 						}
 
-						sr_send_packet(sr,new_packet,len,"eth0");                   //send the ICMP echo reply
+						sr_send_packet(sr,new_packet,len,to_interface);                   //send the ICMP echo reply
 
 					}
 				}
