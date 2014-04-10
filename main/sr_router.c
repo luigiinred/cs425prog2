@@ -89,8 +89,12 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 	uint32_t thisIP = 0xAC1D0C08;  //Chris's topo IP for eth0: 0xAC1D0C08; Timmy's:
 /****************************************************************************************/
 
-	if (sr->topo_id == 314){ // Timmy
-		thisIP = 0xAC1D0CC8;
+
+	char *to_interface = "eth0";
+	// printf("Routing Table: %x\n",sr->routing_table->gw.s_addr);
+
+	if (sr->topo_id == 314){  // Timmy
+		thisIP = 0xAC1D09C8;
 	}else if(sr->topo_id == 0){  //Chris
 		thisIP = 0xAC1D0C08;
 	}
@@ -107,7 +111,7 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 
 		if (ar_op == 0x0001){                                                       //if opcode is 1, it is an arp request
 			uint32_t ar_tip = ntohl(arphdr->ar_tip);                                //change the target ip address from network to host byte order
-
+			//printf("%X\n", ar_tip);
 			if(ar_tip == thisIP){                                                   //if arp request is for me... build and send a response
 				uint8_t *new_packet = calloc(1, sizeof(packet)*len);                //create a copy of the packet
 				memcpy(new_packet, packet, sizeof(packet)*len);
@@ -125,12 +129,32 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 
 				//make the new sender address my MAC address
 				if (sr->topo_id == 314){ // Timmy
+
+					to_interface = "eth0";
 					new_ethernet_hdr->ether_shost[0] = 0x32;
 					new_ethernet_hdr->ether_shost[1] = 0x4e;
 					new_ethernet_hdr->ether_shost[2] = 0xf1;
 					new_ethernet_hdr->ether_shost[3] = 0xe4;
 					new_ethernet_hdr->ether_shost[4] = 0xf1;
 					new_ethernet_hdr->ether_shost[5] = 0x0d;
+
+					to_interface = "eth1";
+					new_ethernet_hdr->ether_shost[0] = 0x42;
+					new_ethernet_hdr->ether_shost[1] = 0x70;
+					new_ethernet_hdr->ether_shost[2] = 0xcd;
+					new_ethernet_hdr->ether_shost[3] = 0x52;
+					new_ethernet_hdr->ether_shost[4] = 0x29;
+					new_ethernet_hdr->ether_shost[5] = 0x69;
+
+					to_interface = "eth2";
+					new_ethernet_hdr->ether_shost[0] = 0x92;
+					new_ethernet_hdr->ether_shost[1] = 0xa3;
+					new_ethernet_hdr->ether_shost[2] = 0x5e;
+					new_ethernet_hdr->ether_shost[3] = 0xe7;
+					new_ethernet_hdr->ether_shost[4] = 0xd9;
+					new_ethernet_hdr->ether_shost[5] = 0x79;
+
+
 				}else if(sr->topo_id == 0){  //Chris's MAC address topology for eth0: 22.10.d8.83.54.6c
 					new_ethernet_hdr->ether_shost[0] = 0x22;
 					new_ethernet_hdr->ether_shost[1] = 0x10;
@@ -154,12 +178,31 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 
 				//make the new sender address my MAC address
 				if (sr->topo_id == 314){  // Timmy
+
+					to_interface = "eth0";
 					new_arphdr->ar_sha[0] = 0x32;
 					new_arphdr->ar_sha[1] = 0x4e;
 					new_arphdr->ar_sha[2] = 0xf1;
 					new_arphdr->ar_sha[3] = 0xe4;
 					new_arphdr->ar_sha[4] = 0xf1;
 					new_arphdr->ar_sha[5] = 0x0d;
+
+					to_interface = "eth1";
+					new_arphdr->ar_sha[0] = 0x22;
+					new_arphdr->ar_sha[1] = 0x10;
+					new_arphdr->ar_sha[2] = 0xd8;
+					new_arphdr->ar_sha[3] = 0x83;
+					new_arphdr->ar_sha[4] = 0x54;
+					new_arphdr->ar_sha[5] = 0x6c;
+
+					to_interface = "eth2";
+					new_arphdr->ar_sha[0] = 0x92;
+					new_arphdr->ar_sha[1] = 0xa3;
+					new_arphdr->ar_sha[2] = 0x5e;
+					new_arphdr->ar_sha[3] = 0xe7;
+					new_arphdr->ar_sha[4] = 0xd9;
+					new_arphdr->ar_sha[5] = 0x79;
+
 				}else if(sr->topo_id == 0){  //Chris's MAC address topology for eth0: 22.10.d8.83.54.6c
 					new_arphdr->ar_sha[0] = 0x22;
 					new_arphdr->ar_sha[1] = 0x10;
@@ -170,7 +213,8 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 				}
 
 
-				sr_send_packet(sr,new_packet,len,"eth0");                           //send the response
+				sr_send_packet(sr,new_packet,len,to_interface);                           //send the response
+				printf("package Sent to %s\n",to_interface);
 				free(new_packet);                                                   //free the allocated memory
 			}
 
@@ -247,7 +291,7 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 						}
 
 						sr_send_packet(sr,new_packet,len,"eth0");                   //send the ICMP echo reply
-						printf("package Sent\n");
+
 					}
 				}
 			}else{
@@ -306,5 +350,5 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 	// printf("ar_sip: %d.%d.%d.%d\n", makeIpReadable3.legibleRepresentation.byte1, makeIpReadable3.legibleRepresentation.byte2, makeIpReadable3.legibleRepresentation.byte3, makeIpReadable3.legibleRepresentation.byte4);
 	// printf("ar_tip: %d.%d.%d.%d\n", makeIpReadable4.legibleRepresentation.byte1, makeIpReadable4.legibleRepresentation.byte2, makeIpReadable4.legibleRepresentation.byte3, makeIpReadable4.legibleRepresentation.byte4);
 
-	printf("%s\n", interface);
+
 }     /* end sr_ForwardPacket */
