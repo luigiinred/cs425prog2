@@ -138,22 +138,6 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 					new_ethernet_hdr->ether_shost[4] = 0xf1;
 					new_ethernet_hdr->ether_shost[5] = 0x0d;
 
-					to_interface = "eth1";
-					new_ethernet_hdr->ether_shost[0] = 0x42;
-					new_ethernet_hdr->ether_shost[1] = 0x70;
-					new_ethernet_hdr->ether_shost[2] = 0xcd;
-					new_ethernet_hdr->ether_shost[3] = 0x52;
-					new_ethernet_hdr->ether_shost[4] = 0x29;
-					new_ethernet_hdr->ether_shost[5] = 0x69;
-
-					to_interface = "eth2";
-					new_ethernet_hdr->ether_shost[0] = 0x92;
-					new_ethernet_hdr->ether_shost[1] = 0xa3;
-					new_ethernet_hdr->ether_shost[2] = 0x5e;
-					new_ethernet_hdr->ether_shost[3] = 0xe7;
-					new_ethernet_hdr->ether_shost[4] = 0xd9;
-					new_ethernet_hdr->ether_shost[5] = 0x79;
-
 
 
 				}else if(sr->topo_id == 0){  //Chris's MAC address topology for eth0: 22.10.d8.83.54.6c
