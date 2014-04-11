@@ -91,11 +91,11 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 
 
 	char *to_interface = "eth0";
-	// printf("Routing Table: %x\n",sr->routing_table->gw.s_addr);
+	printf("Routing Table: %x\n",sr->routing_table->gw.s_addr);
 
-	if (sr->topo_id == 314){  // Timmy
+	if (sr->topo_id == 314){		// Timmy
 		thisIP = 0xAC1D09C8;
-	}else if(sr->topo_id == 0){  //Chris
+	}else if(sr->topo_id == 332){		//Chris
 		thisIP = 0xAC1D0C08;
 	}
 
@@ -133,14 +133,13 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 					to_interface = "eth0";
 					new_ethernet_hdr->ether_shost[0] = 0x32;
 					new_ethernet_hdr->ether_shost[1] = 0x4e;
-					new_ethernet_hdr->ether_shost[2] = 0xf1;
+					new_ethernet_hdr->ether_shost[2] = 0xc0;
 					new_ethernet_hdr->ether_shost[3] = 0xe4;
 					new_ethernet_hdr->ether_shost[4] = 0xf1;
 					new_ethernet_hdr->ether_shost[5] = 0x0d;
 
-
-
-				}else if(sr->topo_id == 0){  //Chris's MAC address topology for eth0: 22.10.d8.83.54.6c
+				}else if(sr->topo_id == 332){  //Chris's MAC address topology for eth0: 22.10.d8.83.54.6c
+					to_interface = "eth0";
 					new_ethernet_hdr->ether_shost[0] = 0x22;
 					new_ethernet_hdr->ether_shost[1] = 0x10;
 					new_ethernet_hdr->ether_shost[2] = 0xd8;
@@ -167,13 +166,14 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 					to_interface = "eth0";
 					new_arphdr->ar_sha[0] = 0x32;
 					new_arphdr->ar_sha[1] = 0x4e;
-					new_arphdr->ar_sha[2] = 0xf1;
+					new_arphdr->ar_sha[2] = 0xc0;
 					new_arphdr->ar_sha[3] = 0xe4;
 					new_arphdr->ar_sha[4] = 0xf1;
 					new_arphdr->ar_sha[5] = 0x0d;
 
 
-				}else if(sr->topo_id == 0){  //Chris's MAC address topology for eth0: 22.10.d8.83.54.6c
+				}else if(sr->topo_id == 332){  //Chris's MAC address topology for eth0: 22.10.d8.83.54.6c
+					to_interface = "eth0";
 					new_arphdr->ar_sha[0] = 0x22;
 					new_arphdr->ar_sha[1] = 0x10;
 					new_arphdr->ar_sha[2] = 0xd8;
@@ -195,7 +195,7 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 	}
 
 	if (ether_type == 0x0800){                                                      //This is an IP packet
-		printf("This is an IP packet\n");                                           //**************** For testing only
+		printf("This is an IP packet : \n");                                           //**************** For testing only
 
 		uint8_t *new_packet = calloc(1, sizeof(packet)*len);                        //have to make a new packet so that I can set checksum to zero before calculating it
 		memcpy(new_packet, packet, sizeof(packet)*len);
@@ -205,12 +205,12 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 		uint16_t givenChecksum = new_ip_packet->ip_sum;                             //store the provided checksum
 		new_ip_packet->ip_sum = 0x0000;                                             //set the checksum field to zero, then calculate the checksum for verification
 		uint16_t calculatedChecksum = cksum((uint16_t *) new_ip_packet, new_ip_packet->ip_hl*2);  //the count is header length * 2 because the header length is given in 32 bits, where the count is in 16 bits
-
 		if (givenChecksum != calculatedChecksum){                                   //if the checksum is invalid
 			printf("IP Checksum is invalid\n");                                     //**************** For testing only
 			return;                                                                 //drop the packet
 
 		}else if(new_ip_packet->ip_p == 1 && ntohl(new_ip_packet->ip_dst.s_addr) == thisIP){ //if the ip packet is an ICMP and it's meant for my IP address...
+
 				printf("This is an ICMP packet for me\n");                          //**************** For testing only
 				struct icmp_hdr *icmpHeader = new_ip_packet + 1;                    //interpret it as an ICMP header
 
@@ -254,23 +254,8 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 							new_ethernet_hdr->ether_shost[4] = 0xf1;
 							new_ethernet_hdr->ether_shost[5] = 0x0d;
 
-							to_interface = "eth1";
-							new_ethernet_hdr->ether_shost[0] = 0x22;
-							new_ethernet_hdr->ether_shost[1] = 0x10;
-							new_ethernet_hdr->ether_shost[2] = 0xd8;
-							new_ethernet_hdr->ether_shost[3] = 0x83;
-							new_ethernet_hdr->ether_shost[4] = 0x54;
-							new_ethernet_hdr->ether_shost[5] = 0x6c;
 
-							to_interface = "eth2";
-							new_ethernet_hdr->ether_shost[0] = 0x92;
-							new_ethernet_hdr->ether_shost[1] = 0xa3;
-							new_ethernet_hdr->ether_shost[2] = 0x5e;
-							new_ethernet_hdr->ether_shost[3] = 0xe7;
-							new_ethernet_hdr->ether_shost[4] = 0xd9;
-							new_ethernet_hdr->ether_shost[5] = 0x79;
-
-						}else if(sr->topo_id == 0){  //Chris's MAC address topology for eth0: 22.10.d8.83.54.6c
+						}else if(sr->topo_id == 332){  //Chris's MAC address topology for eth0: 22.10.d8.83.54.6c
 							new_ethernet_hdr->ether_shost[0] = 0x22;
 							new_ethernet_hdr->ether_shost[1] = 0x10;
 							new_ethernet_hdr->ether_shost[2] = 0xd8;
@@ -287,11 +272,54 @@ u_short cksum(u_short *buf, int count){     //checksum algorithm
 			uint8_t ttl = new_ip_packet->ip_ttl - 1;                                //decrement ttl by 1
 			uint16_t recalculatedChecksum = cksum((uint16_t *) new_ip_packet, new_ip_packet->ip_hl*2);  //recalculate checksum
 			new_ip_packet->ip_sum = recalculatedChecksum;                           //set the new checksum
-			printf("ip address: %X\n", new_ip_packet->ip_dst.s_addr);
+			printf("ip address:> %X\n", new_ip_packet->ip_dst.s_addr & 0xF8FFFFFF);
+
+
+
+
+			if ((new_ip_packet->ip_dst.s_addr & 0xF8FFFFFF) == 0xD0091DAC)
+			{
+				printf("172.29.9.214/29\n");
+
+				to_interface = "eth2";
+				new_ethernet_hdr->ether_shost[0] = 0x92;
+				new_ethernet_hdr->ether_shost[1] = 0xa3;
+				new_ethernet_hdr->ether_shost[2] = 0x5e;
+				new_ethernet_hdr->ether_shost[3] = 0xe7;
+				new_ethernet_hdr->ether_shost[4] = 0xd9;
+				new_ethernet_hdr->ether_shost[5] = 0x79;
+
+
+			}else if ((new_ip_packet->ip_dst.s_addr & 0xF8FFFFFF) == 0xC0091DAC)
+			{
+				printf("172.29.9.198/29\n");
+
+				to_interface = "eth1";
+				new_ethernet_hdr->ether_shost[0] = 0x22;
+				new_ethernet_hdr->ether_shost[1] = 0x10;
+				new_ethernet_hdr->ether_shost[2] = 0xd8;
+				new_ethernet_hdr->ether_shost[3] = 0x83;
+				new_ethernet_hdr->ether_shost[4] = 0x54;
+				new_ethernet_hdr->ether_shost[5] = 0x6c;
+			}
+
+			sr_send_packet(sr,new_packet,len,to_interface);
+
 			//if the ip address is in our cache, then forward the packet to the appropriate router
 			//where in the world do we store a cache???
 			//if the ip address is not in our cache, send out an ARP request for this IP
+		//printf("This is an IP packet : %X\n",new_ip_packet->ip_dst.s_addr < 3);
 		}
+
+
+
+
+
+
+
+
+
+
 		free(new_packet);                                                           //free the allocated memory
 	}
 
